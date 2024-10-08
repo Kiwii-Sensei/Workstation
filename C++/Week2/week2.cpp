@@ -1,40 +1,27 @@
 
 #include<iostream>
-
+#include "Vehicle.h"
 using namespace std;
 
-namespace CST8219 {
-	class Vehicle 
-	{
-	private:
-		int numWheels, numDoors;
-
-	public:
-		Vehicle(int w, int d)
-		{
-			numWheels = w;
-			numDoors = d;
-			cout << "In constructor with 2 parameters" << endl;
-		}
-		Vehicle(int w) : Vehicle(w, 4)
-		{
-			cout << "In constructor with 1 parameters, wheels = " << w << endl;
-		}
-		Vehicle() : Vehicle(4)
-		{
-			cout << "In constructor with 0 parameters" << endl;
-		}
-		Vehicle :: ~Vehicle() 
-		{
-			cout << "In destructor" << endl;
-		}
-			
-	};
+void CreateVehicle(Vehicle &v, int w = 4, int d = 2)
+{
+	v.setNumWheels(w);
+	v.setNumDoors(d);
 }
 
 int main(int argc, char **argv)
 {
-	CST8219::Vehicle myVehicle;
-	cout << "I made a Vehicle!" << endl;
+	Vehicle original; // empty constructor no ( )
+	Vehicle copy(original); // copy constructor by reference
+	Vehicle secondCopy(&original); // copy constructor by pointer
+
+	copy.printVehicle();
+	CreateVehicle(copy, 2); // wheels is 2, everything else is default value
+	copy.printVehicle();
+	CreateVehicle(copy, 2, 3); // wheels is 2, doors is 3
+	copy.printVehicle();
+	copy = secondCopy;
+	copy.printVehicle(); // copy is same as second copy
+
 	return 0;
 }

@@ -1,6 +1,6 @@
 
 cmake_minimum_required(VERSION 2.8.9)
 
-project (hello)
+project (Week2)
 
-add_executable(hello week2.cpp)
+add_executable(Week2 week2.cpp "Vehicle.h" "Vehicle.cpp")
